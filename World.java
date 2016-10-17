@@ -250,6 +250,7 @@ public class World {
         }
         for (NuageToxique nuage : nuagesToxiques) {
             nuage.deplacer();
+            nuage.combattre();
         }
         afficheGraph();
     }
