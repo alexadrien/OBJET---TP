@@ -33,13 +33,14 @@ public class TestSeance2 {
             monde = new World();
             monde.creeMondeAlea();
         }
-        monde.joueur.getPerso().affiche();
         monde.afficheGraph();
         //SauvegardePartie save = new SauvegardePartie("test.a");
         //save.sauvegarderPartie(monde);
-        while(true){
-            monde.tourDeJeu();
+        boolean notQuit = true;
+        while(notQuit){
+            notQuit = monde.tourDeJeu();
         }
+        System.out.println("Fin de la partie");
         
     }
 }

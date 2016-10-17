@@ -269,21 +269,30 @@ public class World {
         }
     }
 
-    public void tourDeJeu() {
-        joueur.jouer();
-        checkPotion(joueur.getPerso());
-        for (Personnage personnage : personnages) {
-            personnage.deplacer();
-            checkPotion(personnage);
+    public boolean tourDeJeu() {
+        try{
+            joueur.jouer();
+            checkPotion(joueur.getPerso());
+            for (Personnage personnage : personnages) {
+                personnage.deplacer();
+                checkPotion(personnage);
+            }
+            for (Monstre monstre : monstres) {
+                monstre.deplacer();
+            }
+            for (NuageToxique nuage : nuagesToxiques) {
+                nuage.deplacer();
+                nuage.combattre();
+            }
+            afficheGraph();
         }
-        for (Monstre monstre : monstres) {
-            monstre.deplacer();
+        catch(NumberFormatException ex){
+            return false;
         }
-        for (NuageToxique nuage : nuagesToxiques) {
-            nuage.deplacer();
-            nuage.combattre();
+        catch(NullPointerException ex){
+            return false;
         }
-        afficheGraph();
+        return true;
     }
 
 }

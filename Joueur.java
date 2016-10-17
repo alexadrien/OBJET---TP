@@ -140,11 +140,21 @@ public class Joueur {
                 System.out.println(i + ". " + creature.nom);
                 i++;
             }
+            System.out.println("\n-1. Ou vous pouvez quitter");
+            System.out.println("\n-2. Ou vous pouvez sauvegarder");
             System.out.println("\n0. Ou vous pouvez vous déplacer\nVotre choix?..");
             String choix = user_input.next();
             switch(choix){
                 case "0":
                     seDeplace();
+                    break;
+                case "-1":
+                    throw new NullPointerException();
+                case "-2":
+                    System.out.println("Quel nom de fichier?.. ");
+                    String fichier = user_input.next();
+                    SauvegardePartie save = new SauvegardePartie(fichier);
+                    save.sauvegarderPartie(TestSeance2.monde);
                     break;
                 default:
                     this.perso.combattre(listeProx.get(Integer.parseInt(choix)-1));
