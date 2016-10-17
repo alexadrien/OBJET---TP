@@ -38,8 +38,8 @@ public class World {
         nourritures = new LinkedList<>();
         tailleMonde = 30;
     }
-    
-    public World(int tailleMonde){
+
+    public World(int tailleMonde) {
         joueur = new Joueur(false);
         personnages = new ArrayList<>();
         monstres = new ArrayList<>();
@@ -63,8 +63,8 @@ public class World {
         int nbLoup = rand.nextInt(10) + 1;
         int nbPotion = rand.nextInt(5) + 1;
         int nbNuage = rand.nextInt(10) + 1;
-        //int nbBanane = rand.nextInt(10) + 1;
-        //int nbCyanure = rand.nextInt(10) + 1;
+        int nbBanane = rand.nextInt(10) + 1;
+        int nbCyanure = rand.nextInt(10) + 1;
 
         for (int i = 0; i < nbArcher; i++) {
             personnages.add(Archer.archerRand());
@@ -124,7 +124,7 @@ public class World {
             }
             nuagesToxiques.add(new NuageToxique(newPos));
         }
-/*
+
         for (int i = 0; i < nbBanane; i++) {
             newPos.setPosition(rand.nextInt(tailleMonde), rand.nextInt(tailleMonde));
             while (!isFree(newPos)) {
@@ -140,7 +140,6 @@ public class World {
             }
             nourritures.add(new Nourriture("Cyanure", 5, "ptVie", false, 20, newPos));
         }
-        */
 
     }
 
@@ -165,10 +164,10 @@ public class World {
      * Affichage de la position de tous les personnages
      *
      */
-    public void afficheGraph(){
+    public void afficheGraph() {
         String[][] mat = new String[tailleMonde][tailleMonde];
-        for (int x = 0; x<tailleMonde; x++){
-            for (int y=0; y<tailleMonde; y++){
+        for (int x = 0; x < tailleMonde; x++) {
+            for (int y = 0; y < tailleMonde; y++) {
                 mat[x][y] = "_";
             }
         }
@@ -205,13 +204,19 @@ public class World {
                 mat[nuage.getPos().getX()][nuage.getPos().getY()] = "n";
             }
         }
-        /*
+
         for (Nourriture nourriture : nourritures) {
             if (nourriture.getPos().getX() < tailleMonde && nourriture.getPos().getX() > 0 && nourriture.getPos().getY() < tailleMonde && nourriture.getPos().getY() > 0) {
-                mat[nourriture.getPos().getX()][nourriture.getPos().getY()] = "B";
+                if (nourriture.getNom().equals("Banane")) {
+                    mat[nourriture.getPos().getX()][nourriture.getPos().getY()] = "B";
+                }
+                if (nourriture.getNom().equals("Cyanure")) {
+                    mat[nourriture.getPos().getX()][nourriture.getPos().getY()] = "C";
+                }
+
             }
         }
-        */
+
         for (int y = 0; y < tailleMonde; y++) {
             for (int x = 0; x < tailleMonde; x++) {
                 System.out.print(mat[x][tailleMonde - 1 - y] + " ");
@@ -272,7 +277,7 @@ public class World {
     }
 
     public boolean tourDeJeu() {
-        try{
+        try {
             joueur.jouer();
             checkPotion(joueur.getPerso());
             for (Personnage personnage : personnages) {
@@ -287,11 +292,9 @@ public class World {
                 nuage.combattre();
             }
             afficheGraph();
-        }
-        catch(NumberFormatException ex){
+        } catch (NumberFormatException ex) {
             return false;
-        }
-        catch(NullPointerException ex){
+        } catch (NullPointerException ex) {
             return false;
         }
         return true;

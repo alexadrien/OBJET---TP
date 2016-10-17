@@ -31,6 +31,10 @@ public class Nourriture extends Objet {
         this.pos = pos;
     }
 
+    public String getNom() {
+        return nom;
+    }
+
     public void avaler(Creature c) throws IllegalArgumentException, IllegalAccessException, SecurityException {
         try {
             System.out.println(c.getNom().concat(" vient d'avaler ").concat(this.nom));
