@@ -36,7 +36,6 @@ public class World {
         potions = new LinkedList<>();
         tailleMonde = 30;
     }
-<<<<<<< Updated upstream
     
     public World(int tailleMonde){
         joueur = new Joueur();
@@ -48,12 +47,6 @@ public class World {
     }
     
     /** Creation d'un monde de manière aléatoire. On place les personnages de manière aléatoire.
-=======
-
-    /**
-     * Creation d'un monde de manière aléatoire. On place les personnages de
-     * manière aléatoire.
->>>>>>> Stashed changes
      *
      */
     public void creeMondeAlea() {
