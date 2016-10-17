@@ -35,8 +35,7 @@ public class Joueur {
         boolean ok = false;
         while(!ok){
             ok=true;
-            //typePerso = user_input.next();
-            typePerso = "Guerrier";
+            typePerso = user_input.next();
             switch(typePerso){
                 case "Guerrier":
                     perso = Guerrier.guerrierRand();
@@ -58,8 +57,7 @@ public class Joueur {
         }
         
         System.out.print("Quelle nom de personnage voulez vous?.. ");
-        //perso.nom = user_input.next();
-        perso.nom = "Acube";
+        perso.nom = user_input.next();
         perso.affiche();
         return perso;
     }
