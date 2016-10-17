@@ -259,14 +259,16 @@ public class World {
     }
 
     public void checkPotion(Personnage perso) {
+        Potion potionPrise = null;
         for (Potion potion : potions) {
             if (potion.getPos().equals(perso.getPos())) {
                 potion.estPris(perso);
                 System.out.println(perso.nom + " vient de prendre une potion!");
                 perso.affiche();
-                potions.remove(potion);
+                potionPrise = potion;
             }
         }
+        potions.remove(potionPrise);
     }
 
     public boolean tourDeJeu() {

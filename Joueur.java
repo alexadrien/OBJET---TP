@@ -73,6 +73,8 @@ public class Joueur {
     
     public void seDeplace(){
         Scanner user_input = new Scanner(System.in);
+        System.out.println("\n-1. Vous pouvez quitter");
+        System.out.println("\n-2. Ou vous pouvez sauvegarder");
         System.out.print("Déplacez vous en utilisant Z Q S D ou 0 puis Entrer: ");
         String choix;
         Point2D pos = new Point2D();
@@ -82,6 +84,14 @@ public class Joueur {
             choix = user_input.next();
             pos = perso.getPos();
             switch(choix){
+                case "-1":
+                    throw new NullPointerException();
+                case "-2":
+                    System.out.println("Quel nom de fichier?.. ");
+                    String fichier = user_input.next();
+                    SauvegardePartie save = new SauvegardePartie(fichier);
+                    save.sauvegarderPartie(TestSeance2.monde);
+                    break;
                 case "z":
                     pos.translate(0,1);
                     break;
