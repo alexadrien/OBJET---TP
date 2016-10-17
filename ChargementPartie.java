@@ -5,13 +5,21 @@
  */
 package org.centrale.projet.objet;
 
+import java.io.BufferedReader;
+
 /**
  *
- * @author Acube
+ * @author Arthur
  */
-public abstract class ElementDeJeu {
+public class ChargementPartie {
     
-    public static void creerElementJeu(String[] args){
+    private String nomFichier;
+    private BufferedReader reader;
+    
+    public ChargementPartie(String nomFicher){
+        this.nomFichier = nomFichier;
         
     }
+    
+    
 }

@@ -20,6 +20,8 @@ public class TestSeance2 {
         monde = new World();
         monde.creeMondeAlea();
         monde.afficheGraph();
+        SauvegardePartie save = new SauvegardePartie("test.a");
+        save.sauvegarderPartie(monde);
         while(true){
             monde.tourDeJeu();
         }

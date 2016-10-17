@@ -45,7 +45,7 @@ public class World {
         int nbLapin = rand.nextInt(10)+1;
         int nbGuerrier = rand.nextInt(10)+1;
         int nbLoup = rand.nextInt(10)+1;
-        int nbPotion = rand.nextInt(10)+1;
+        int nbPotion = rand.nextInt(5)+1;
         
         for (int i=0; i<nbArcher; i++){
             personnages.add(Archer.archerRand());
@@ -122,7 +122,7 @@ public class World {
         }
         mat[joueur.getPerso().getPos().getX()][joueur.getPerso().getPos().getY()] = "\u001B[31m" + "J" + "\u001B[0m";
         for (Personnage perso : personnages) {
-            if (perso.getPos().getX()<50 && perso.getPos().getX()>0 && perso.getPos().getY()<50 && perso.getPos().getY()>0){
+            if (perso.getPos().getX()<tailleMonde && perso.getPos().getX()>0 && perso.getPos().getY()<tailleMonde && perso.getPos().getY()>0){
                 if (perso.getClass().equals(Archer.class)){
                     mat[perso.getPos().getX()][perso.getPos().getY()] = "A";
                 }
@@ -138,7 +138,7 @@ public class World {
             }
         }
         for (Monstre monstre : monstres) {
-            if (monstre.getPos().getX()<50 && monstre.getPos().getX()>0 && monstre.getPos().getY()<50 && monstre.getPos().getY()>0){
+            if (monstre.getPos().getX()<tailleMonde && monstre.getPos().getX()>0 && monstre.getPos().getY()<tailleMonde && monstre.getPos().getY()>0){
                 if (monstre.getClass().equals(Loup.class)){
                     mat[monstre.getPos().getX()][monstre.getPos().getY()] = "L";
                 }
@@ -148,13 +148,13 @@ public class World {
             }
         }
         for (Potion potion : potions) {
-            if (potion.getPos().getX()<50 && potion.getPos().getX()>0 && potion.getPos().getY()<50 && potion.getPos().getY()>0){
+            if (potion.getPos().getX()<tailleMonde && potion.getPos().getX()>0 && potion.getPos().getY()<tailleMonde && potion.getPos().getY()>0){
                 mat[potion.getPos().getX()][potion.getPos().getY()] = "p";
             }
         }
-        for (int y = 0; y<50; y++){
-            for (int x=0; x<50; x++){
-                System.out.print(mat[x][49-y]);
+        for (int y = 0; y<tailleMonde; y++){
+            for (int x=0; x<tailleMonde; x++){
+                System.out.print(mat[x][tailleMonde-1-y]+" ");
             }
             System.out.println();
         }
