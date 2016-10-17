@@ -40,11 +40,12 @@ public class World {
      */
     public void creeMondeAlea(){
         Random rand = new Random();
-        int nbArcher = rand.nextInt(10)+100;
+        int nbArcher = rand.nextInt(10)+1;
         int nbPaysan = rand.nextInt(10)+1;
         int nbLapin = rand.nextInt(10)+1;
         int nbGuerrier = rand.nextInt(10)+1;
         int nbLoup = rand.nextInt(10)+1;
+        int nbPotion = rand.nextInt(10)+1;
         
         for (int i=0; i<nbArcher; i++){
             personnages.add(Archer.archerRand());
@@ -85,7 +86,13 @@ public class World {
             monstre.setPos(newPos);
         }
         
-        potions.add(new Soin(50, new Point2D(joueur.getPerso().getPos())));
+        for (int i=0; i<nbPotion; i++){
+            newPos.setPosition(rand.nextInt(tailleMonde), rand.nextInt(tailleMonde));
+            while(!isFree(newPos)){
+                newPos.setPosition(rand.nextInt(tailleMonde), rand.nextInt(tailleMonde));
+            }
+            potions.add(new Soin(rand.nextInt(50), newPos));
+        }
     }
     
     /** Affichage de la position de tous les personnages
@@ -113,15 +120,31 @@ public class World {
                 mat[x][y] = "_";
             }
         }
-        mat[joueur.getPerso().getPos().getX()][joueur.getPerso().getPos().getY()] = "J";
+        mat[joueur.getPerso().getPos().getX()][joueur.getPerso().getPos().getY()] = "\u001B[31m" + "J" + "\u001B[0m";
         for (Personnage perso : personnages) {
             if (perso.getPos().getX()<50 && perso.getPos().getX()>0 && perso.getPos().getY()<50 && perso.getPos().getY()>0){
-                mat[perso.getPos().getX()][perso.getPos().getY()] = "P";
+                if (perso.getClass().equals(Archer.class)){
+                    mat[perso.getPos().getX()][perso.getPos().getY()] = "A";
+                }
+                else if (perso.getClass().equals(Guerrier.class)){
+                    mat[perso.getPos().getX()][perso.getPos().getY()] = "G";
+                }
+                else if (perso.getClass().equals(Paysan.class)){
+                    mat[perso.getPos().getX()][perso.getPos().getY()] = "P";
+                }
+                else if (perso.getClass().equals(Mage.class)){
+                    mat[perso.getPos().getX()][perso.getPos().getY()] = "M";
+                }
             }
         }
         for (Monstre monstre : monstres) {
             if (monstre.getPos().getX()<50 && monstre.getPos().getX()>0 && monstre.getPos().getY()<50 && monstre.getPos().getY()>0){
-                mat[monstre.getPos().getX()][monstre.getPos().getY()] = "M";
+                if (monstre.getClass().equals(Loup.class)){
+                    mat[monstre.getPos().getX()][monstre.getPos().getY()] = "L";
+                }
+                else if (monstre.getClass().equals(Lapin.class)){
+                    mat[monstre.getPos().getX()][monstre.getPos().getY()] = "l";
+                }
             }
         }
         for (Potion potion : potions) {
@@ -193,6 +216,7 @@ public class World {
         for (Monstre monstre : monstres) {
             isFree = isFree && !pos.equals(monstre.getPos());
         }
+        isFree = isFree && pos.getX()>0 && pos.getX()<tailleMonde && pos.getY()>0 && pos.getY()<tailleMonde;
         return isFree;
     }
     
