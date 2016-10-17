@@ -16,6 +16,7 @@ public class TestSeance2 {
     
     public static void main(String[] args)
     {
+        /*
         monde = new World();
         monde.creeMondeAlea();
         monde.afficheGraph();
@@ -23,6 +24,6 @@ public class TestSeance2 {
             monde.tourDeJeu();
         }
         //monde.affiche();
-        
+        */
     }
 }
