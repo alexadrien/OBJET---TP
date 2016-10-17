@@ -35,6 +35,15 @@ public class World {
         tailleMonde = 30;
     }
     
+    public World(int tailleMonde){
+        joueur = new Joueur();
+        personnages = new ArrayList<>();
+        monstres = new ArrayList<>();
+        nuagesToxiques = new ArrayList<>();
+        potions = new LinkedList<>();
+        this.tailleMonde = tailleMonde;
+    }
+    
     /** Creation d'un monde de manière aléatoire. On place les personnages de manière aléatoire.
      *
      */
