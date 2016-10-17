@@ -20,7 +20,6 @@ public class World {
     public ArrayList<Monstre> monstres;
     public LinkedList<Potion> potions;
     public final int tailleMonde;
-    public final int nbPerso;
     public Joueur joueur;
     
     /** Constructeur de la classe, on y crée tous les personnages
@@ -32,7 +31,6 @@ public class World {
         monstres = new ArrayList<>();
         potions = new LinkedList<>();
         tailleMonde = 30;
-        nbPerso = 100;
     }
     
     /** Creation d'un monde de manière aléatoire. On place les personnages de manière aléatoire.
@@ -160,31 +158,6 @@ public class World {
         }
     }
     
-    /**Méthode de calcul du barycentre des personnages en utilisant les iterateurs
-     *
-     */
-    public void barycentre(){
-        float X = 0;
-        float Y = 0;
-        for (Personnage perso : personnages) {
-            X += perso.getPos().getX();
-            Y += perso.getPos().getY();
-        }
-        System.out.println(X/nbPerso + " " + Y/nbPerso);
-    }
-    
-    /**Méthode de calcul du barycentre des personnages sans utiliser les iterateurs
-     *
-     */
-    public void barycentre2(){
-        float X = 0;
-        float Y = 0;
-        for (int i = 0; i<personnages.size(); i++) {
-            X += personnages.get(i).getPos().getX();
-            Y += personnages.get(i).getPos().getY();
-        }
-        System.out.println(X/nbPerso + " " + Y/nbPerso);
-    }
     
     /** Fonction qui vérifie si la case sur laquel on pointe est libre et si il n'y a personne à moins de 3 cases
      *
