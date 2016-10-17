@@ -22,12 +22,13 @@ public class Nourriture extends Objet {
     protected boolean bienoumal;
     protected int duree;
 
-    public Nourriture(String nom, int intensite, String attributTouche, boolean bienoumal, int duree) {
+    public Nourriture(String nom, int intensite, String attributTouche, boolean bienoumal, int duree, Point2D pos) {
         this.nom = nom;
         this.intensite = intensite;
         this.attributTouche = attributTouche;
         this.bienoumal = bienoumal;
         this.duree = duree;
+        this.pos = pos;
     }
 
     public void avaler(Creature c) throws IllegalArgumentException, IllegalAccessException, SecurityException {

@@ -21,6 +21,7 @@ public class World {
     public ArrayList<Monstre> monstres;
     public ArrayList<NuageToxique> nuagesToxiques;
     public LinkedList<Potion> potions;
+    public LinkedList<Nourriture> nourritures;
     public final int tailleMonde;
     public Joueur joueur;
 
@@ -34,19 +35,23 @@ public class World {
         monstres = new ArrayList<>();
         nuagesToxiques = new ArrayList<>();
         potions = new LinkedList<>();
+        nourritures = new LinkedList<>();
         tailleMonde = 30;
     }
-    
-    public World(int tailleMonde){
+
+    public World(int tailleMonde) {
         joueur = new Joueur();
         personnages = new ArrayList<>();
         monstres = new ArrayList<>();
         nuagesToxiques = new ArrayList<>();
         potions = new LinkedList<>();
+        nourritures = new LinkedList<>();
         this.tailleMonde = tailleMonde;
     }
-    
-    /** Creation d'un monde de manière aléatoire. On place les personnages de manière aléatoire.
+
+    /**
+     * Creation d'un monde de manière aléatoire. On place les personnages de
+     * manière aléatoire.
      *
      */
     public void creeMondeAlea() {
@@ -58,6 +63,8 @@ public class World {
         int nbLoup = rand.nextInt(10) + 1;
         int nbPotion = rand.nextInt(5) + 1;
         int nbNuage = rand.nextInt(10) + 1;
+        //int nbBanane = rand.nextInt(10) + 1;
+        //int nbCyanure = rand.nextInt(10) + 1;
 
         for (int i = 0; i < nbArcher; i++) {
             personnages.add(Archer.archerRand());
@@ -110,7 +117,6 @@ public class World {
             }
             potions.add(new Soin(rand.nextInt(50), newPos));
         }
-
         for (int i = 0; i < nbNuage; i++) {
             newPos.setPosition(rand.nextInt(tailleMonde), rand.nextInt(tailleMonde));
             while (!isFree(newPos)) {
@@ -118,6 +124,24 @@ public class World {
             }
             nuagesToxiques.add(new NuageToxique(newPos));
         }
+/*
+        for (int i = 0; i < nbBanane; i++) {
+            newPos.setPosition(rand.nextInt(tailleMonde), rand.nextInt(tailleMonde));
+            while (!isFree(newPos)) {
+                newPos.setPosition(rand.nextInt(tailleMonde), rand.nextInt(tailleMonde));
+            }
+            nourritures.add(new Nourriture("Banane", 5, "ptVie", true, 10, newPos));
+        }
+
+        for (int i = nbBanane; i < nbCyanure + nbBanane; i++) {
+            newPos.setPosition(rand.nextInt(tailleMonde), rand.nextInt(tailleMonde));
+            while (!isFree(newPos)) {
+                newPos.setPosition(rand.nextInt(tailleMonde), rand.nextInt(tailleMonde));
+            }
+            nourritures.add(new Nourriture("Cyanure", 5, "ptVie", false, 20, newPos));
+        }
+        */
+
     }
 
     /**
@@ -177,10 +201,17 @@ public class World {
             }
         }
         for (NuageToxique nuage : nuagesToxiques) {
-            if (nuage.getPos().getX() < 50 && nuage.getPos().getX() > 0 && nuage.getPos().getY() < 50 && nuage.getPos().getY() > 0) {
+            if (nuage.getPos().getX() < tailleMonde && nuage.getPos().getX() > 0 && nuage.getPos().getY() < tailleMonde && nuage.getPos().getY() > 0) {
                 mat[nuage.getPos().getX()][nuage.getPos().getY()] = "n";
             }
         }
+        /*
+        for (Nourriture nourriture : nourritures) {
+            if (nourriture.getPos().getX() < tailleMonde && nourriture.getPos().getX() > 0 && nourriture.getPos().getY() < tailleMonde && nourriture.getPos().getY() > 0) {
+                mat[nourriture.getPos().getX()][nourriture.getPos().getY()] = "B";
+            }
+        }
+        */
         for (int y = 0; y < tailleMonde; y++) {
             for (int x = 0; x < tailleMonde; x++) {
                 System.out.print(mat[x][tailleMonde - 1 - y] + " ");
