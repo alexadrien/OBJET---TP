@@ -5,13 +5,17 @@
  */
 package org.centrale.projet.objet;
 
-/** Monstre féroce et dominant, le loup. Créature de la nuit 
+import java.util.Random;
+
+/**
+ * Monstre féroce et dominant, le loup. Créature de la nuit
  *
  * @author Arthur
  */
-public class Loup extends Monstre{
-    
-    /** Constructeur de la classe
+public class Loup extends Monstre {
+
+    /**
+     * Constructeur de la classe
      *
      * @param nom Nom
      * @param ptPar Points de parade
@@ -32,7 +36,18 @@ public class Loup extends Monstre{
     public Loup() {
         super();
     }
-    
-    
-    
+
+    public static Loup loupRand() {
+        Loup l = new Loup();
+        Random rand = new Random();
+
+        l.ptVie = rand.nextInt(30) + 10;
+        l.pourcentageAtt = rand.nextInt(50) + 10;
+        l.pourcentagePar = rand.nextInt(30) + 10;
+        l.degAtt = rand.nextInt(45) + 10;
+        l.ptPar = rand.nextInt(15) + 10;
+
+        return l;
+    }
+
 }

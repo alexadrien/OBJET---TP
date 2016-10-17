@@ -46,6 +46,7 @@ public class NuageToxique extends Objet implements Deplacable, Combattant {
 
     @Override
     public void deplacer() {
+        /*
         Random rand = new Random();
         Point2D newPos = new Point2D(this.pos.getX() + rand.nextInt(3) - 1, this.pos.getY() + rand.nextInt(3) - 1);
         while (!TestSeance2.monde.isGood(newPos)) {
@@ -53,6 +54,6 @@ public class NuageToxique extends Objet implements Deplacable, Combattant {
         }
         this.pos.setPosition(newPos.getX(), newPos.getY());
         //On considère qu'une créature peut (et doit) se déplacer vers toutes les cases qui l'entourent et ceci de manière aléatoire.
-
+*/
     }
 }
