@@ -16,7 +16,7 @@ public class Objet extends ElementDeJeu{
     protected Point2D pos;
 
     public Objet(Point2D pos) {
-        this.pos = pos;
+        this.pos = new Point2D(pos);
     }
 
     public Objet() {
@@ -28,7 +28,7 @@ public class Objet extends ElementDeJeu{
     }
 
     public void setPos(Point2D pos) {
-        this.pos = pos;
+        this.pos = new Point2D(pos);
     }
     
     public void placementRandom(){
