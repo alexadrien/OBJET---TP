@@ -18,6 +18,7 @@ public class World {
     
     public ArrayList<Personnage> personnages;
     public ArrayList<Monstre> monstres;
+    public ArrayList<NuageToxique> nuagesToxiques;
     public LinkedList<Potion> potions;
     public final int tailleMonde;
     public Joueur joueur;
@@ -29,6 +30,7 @@ public class World {
         joueur = new Joueur();
         personnages = new ArrayList<>();
         monstres = new ArrayList<>();
+        nuagesToxiques = new ArrayList<>();
         potions = new LinkedList<>();
         tailleMonde = 30;
     }
@@ -44,6 +46,7 @@ public class World {
         int nbGuerrier = rand.nextInt(10)+1;
         int nbLoup = rand.nextInt(10)+1;
         int nbPotion = rand.nextInt(5)+1;
+        int nbNuage = rand.nextInt(10)+1;
         
         for (int i=0; i<nbArcher; i++){
             personnages.add(Archer.archerRand());
@@ -90,6 +93,14 @@ public class World {
                 newPos.setPosition(rand.nextInt(tailleMonde), rand.nextInt(tailleMonde));
             }
             potions.add(new Soin(rand.nextInt(50), newPos));
+        }
+        
+        for (int i=0; i<nbNuage; i++){
+            newPos.setPosition(rand.nextInt(tailleMonde), rand.nextInt(tailleMonde));
+            while(!isFree(newPos)){
+                newPos.setPosition(rand.nextInt(tailleMonde), rand.nextInt(tailleMonde));
+            }
+            nuagesToxiques.add(new NuageToxique(newPos));
         }
     }
     
@@ -148,6 +159,11 @@ public class World {
         for (Potion potion : potions) {
             if (potion.getPos().getX()<tailleMonde && potion.getPos().getX()>0 && potion.getPos().getY()<tailleMonde && potion.getPos().getY()>0){
                 mat[potion.getPos().getX()][potion.getPos().getY()] = "p";
+            }
+        }
+        for (NuageToxique nuage : nuagesToxiques) {
+            if (nuage.getPos().getX()<50 && nuage.getPos().getX()>0 && nuage.getPos().getY()<50 && nuage.getPos().getY()>0){
+                mat[nuage.getPos().getX()][nuage.getPos().getY()] = "n";
             }
         }
         for (int y = 0; y<tailleMonde; y++){
