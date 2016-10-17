@@ -31,7 +31,7 @@ public class World {
         personnages = new ArrayList<>();
         monstres = new ArrayList<>();
         potions = new LinkedList<>();
-        tailleMonde = 50;
+        tailleMonde = 30;
         nbPerso = 100;
     }
     

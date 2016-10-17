@@ -71,13 +71,22 @@ public class Archer extends Personnage {
         }
         else if (d > 1 && d < this.distAttMax){
             //à distance
-            if (this.lancerDe(this.pourcentageAtt)){
-                System.out.println("Votre adversaire avait " + adversaire.ptVie + " points de vie");
-                adversaire.ptVie -= this.degAtt;
-                adversaire.ptVie = Math.max(0, adversaire.ptVie);
-                System.out.println("Votre adversaire a maintenant " + adversaire.ptVie + " points de vie");
+            if (nbFleches >0){
+                if (this.lancerDe(this.pourcentageAtt)){
+                    System.out.println("Votre adversaire avait " + adversaire.ptVie + " points de vie");
+                    adversaire.ptVie -= this.degAtt;
+                    adversaire.ptVie = Math.max(0, adversaire.ptVie);
+                    System.out.println("Votre adversaire a maintenant " + adversaire.ptVie + " points de vie");
+                }
+                else{
+                    System.out.println("Vous avez raté votre tir!");
+                }
+                this.nbFleches --;
+                System.out.println("Il vous reste " + nbFleches + " flèches");
             }
-            this.nbFleches --;
+            else{
+                System.out.println("Vous n'avez plus de flèche, dommage..");
+            }
         }
         else{
             System.out.println("Je ne peux pas lancer si loin!");
