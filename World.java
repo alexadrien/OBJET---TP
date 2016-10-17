@@ -36,7 +36,7 @@ public class World {
     }
     
     public World(int tailleMonde){
-        joueur = new Joueur();
+        joueur = new Joueur(false);
         personnages = new ArrayList<>();
         monstres = new ArrayList<>();
         nuagesToxiques = new ArrayList<>();
@@ -132,9 +132,9 @@ public class World {
      *
      */
     public void afficheGraph(){
-        String[][] mat = new String[50][50];
-        for (int x = 0; x<50; x++){
-            for (int y=0; y<50; y++){
+        String[][] mat = new String[tailleMonde][tailleMonde];
+        for (int x = 0; x<tailleMonde; x++){
+            for (int y=0; y<tailleMonde; y++){
                 mat[x][y] = "_";
             }
         }
