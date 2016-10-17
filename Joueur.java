@@ -19,6 +19,15 @@ public class Joueur {
     public Joueur(){
         perso = choosePerso();
     }
+    
+    public Joueur(boolean choose){
+        if (choose){
+            perso = choosePerso();
+        }
+        else{
+            perso = null;
+        }
+    }
 
     public Personnage getPerso() {
         return perso;

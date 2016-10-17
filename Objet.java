@@ -11,7 +11,7 @@ import java.util.Random;
  *
  * @author Arthur
  */
-public class Objet {
+public class Objet extends ElementDeJeu{
     
     protected Point2D pos;
 

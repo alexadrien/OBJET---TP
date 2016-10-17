@@ -5,6 +5,8 @@
  */
 package org.centrale.projet.objet;
 
+import java.util.Scanner;
+
 
 /**
  *
@@ -16,16 +18,28 @@ public class TestSeance2 {
     
     public static void main(String[] args)
     {
-        
-        monde = new World();
-        monde.creeMondeAlea();
+        Scanner user_input = new Scanner(System.in);
+        System.out.println("Voulez-vous charger une partie? (o,n)");
+        String rep = user_input.next();
+        if (rep.equals("o"))
+        {
+            System.out.println("Nom du fichier.. ");
+            rep = user_input.next();
+            ChargementPartie chrgt = new ChargementPartie(rep);
+            monde = chrgt.chargerPartie();
+        }
+        else
+        {
+            monde = new World();
+            monde.creeMondeAlea();
+        }
+        monde.joueur.getPerso().affiche();
         monde.afficheGraph();
-        SauvegardePartie save = new SauvegardePartie("test.a");
-        save.sauvegarderPartie(monde);
+        //SauvegardePartie save = new SauvegardePartie("test.a");
+        //save.sauvegarderPartie(monde);
         while(true){
             monde.tourDeJeu();
         }
-        //monde.affiche();
         
     }
 }

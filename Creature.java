@@ -11,7 +11,7 @@ import java.util.Random;
  *
  * @author Arthur
  */
-public abstract class Creature implements Deplacable {
+public abstract class Creature extends ElementDeJeu implements Deplacable {
     
     //Attributs
     

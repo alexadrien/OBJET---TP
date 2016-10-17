@@ -38,9 +38,9 @@ public class World {
         nourritures = new LinkedList<>();
         tailleMonde = 30;
     }
-
-    public World(int tailleMonde) {
-        joueur = new Joueur();
+    
+    public World(int tailleMonde){
+        joueur = new Joueur(false);
         personnages = new ArrayList<>();
         monstres = new ArrayList<>();
         nuagesToxiques = new ArrayList<>();
@@ -165,10 +165,10 @@ public class World {
      * Affichage de la position de tous les personnages
      *
      */
-    public void afficheGraph() {
-        String[][] mat = new String[50][50];
-        for (int x = 0; x < 50; x++) {
-            for (int y = 0; y < 50; y++) {
+    public void afficheGraph(){
+        String[][] mat = new String[tailleMonde][tailleMonde];
+        for (int x = 0; x<tailleMonde; x++){
+            for (int y=0; y<tailleMonde; y++){
                 mat[x][y] = "_";
             }
         }
